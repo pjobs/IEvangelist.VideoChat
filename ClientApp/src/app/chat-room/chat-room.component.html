@@ -1,0 +1,22 @@
+<div class="recorded-message">It is being recorded</div>
+<div class="grid-bottom">
+    <app-settings #settings (settingsChanged)="onSettingsChanged($event)"></app-settings>
+</div>
+<div class="grid-container">
+    <div class="grid-content">
+        <app-participants #participants (leaveRoom)="onLeaveRoom($event)"
+            (participantsChanged)="onParticipantsChanged($event)" [style.display]="!!activeRoom ? 'block' : 'none'"
+            [activeRoomName]="!!activeRoom ? activeRoom.name : null"></app-participants>
+        <app-camera #camera [style.display]="!!activeRoom ? 'none' : 'block'"></app-camera>
+    </div>
+</div>
+
+<div style="display:none">
+    <app-rooms #rooms (roomChanged)="onRoomChanged($event)" [activeRoomName]="!!activeRoom ? activeRoom.name : null" style="display:none">
+    </app-rooms>
+
+    <app-participants #participants (leaveRoom)="onLeaveRoom($event)"
+        (participantsChanged)="onParticipantsChanged($event)" style="display:none"
+        [activeRoomName]="!!activeRoom ? activeRoom.name : null"></app-participants>
+
+</div>

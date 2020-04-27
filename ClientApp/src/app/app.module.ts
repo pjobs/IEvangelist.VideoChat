@@ -15,7 +15,15 @@ import { ActivityIndicatorComponent } from './activity-indicator/activity-indica
 import { VideoChatService } from './services/videochat.service';
 import { DeviceService } from './services/device.service';
 import { StorageService } from './services/storage.service';
+import { RouterModule } from '@angular/router';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
+var routes = [
+    {path: 'chat/:room',component:ChatRoomComponent},
+    {path: 'home',component:HomeComponent},
+    {path: '', pathMatch:'full',redirectTo:'chat/claim_101010239'},
+    {path: '*',pathMatch:'full',redirectTo:'chat/claim_101010239'}
+];
 @NgModule({
     declarations: [
         AppComponent,
@@ -25,10 +33,12 @@ import { StorageService } from './services/storage.service';
         CameraComponent,
         SettingsComponent,
         DeviceSelectComponent,
-        ActivityIndicatorComponent
+        ActivityIndicatorComponent,
+        ChatRoomComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+        RouterModule.forRoot(routes),
         HttpClientModule,
         FormsModule
     ],

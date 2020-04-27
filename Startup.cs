@@ -20,14 +20,25 @@ namespace IEvangelist.VideoChat
 
             services.Configure<TwilioSettings>(settings =>
                     {
-                        settings.AccountSid = Environment.GetEnvironmentVariable("TWILIO_ACCOUNT_SID");
-                        settings.ApiSecret = Environment.GetEnvironmentVariable("TWILIO_API_SECRET");                        
-                        settings.ApiKey = Environment.GetEnvironmentVariable("TWILIO_API_KEY");
+                        settings.AccountSid = "ACbf6e8d345e044dba53b8f87bca6e8dee"; //Environment.GetEnvironmentVariable("TWILIO_ACCOUNT_SID");
+                        settings.ApiSecret = "oSE3InQqyHibaX9WvnljSuvGWApoXAdF";//Environment.GetEnvironmentVariable("TWILIO_API_SECRET");                        
+                        settings.ApiKey = "SKff5567a08c43f894aac493fe174ff7e1";//Environment.GetEnvironmentVariable("TWILIO_API_KEY");
                     })
                     .AddTransient<IVideoService, VideoService>()
                     .AddSpaStaticFiles(config => config.RootPath = "ClientApp/dist");
 
             services.AddSignalR();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("All",
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("https://video.singletouchpoint.com").AllowAnyHeader()
+                                              .WithMethods("GET", "POST").AllowCredentials(); 
+                                  });
+            });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -46,6 +57,7 @@ namespace IEvangelist.VideoChat
                .UseSpaStaticFiles();
 
             app.UseRouting();
+            app.UseCors("All");
             app.UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllerRoute(

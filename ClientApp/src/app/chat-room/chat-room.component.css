@@ -1,0 +1,40 @@
+.grid-container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 4fr;
+    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-areas: "top" "content" "bottom";
+}
+
+.grid-content {
+    grid-area: content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: solid 2px gray;
+    border-bottom: solid 2px gray;
+}
+
+.grid-bottom {
+    /*grid-area: top; */
+    justify-content: center;
+    align-items: center;
+    border-top: solid 2px gray;
+    border-bottom: solid 2px gray;
+}
+
+.grid-bottom
+ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.recorded-message{
+    margin: auto;
+    width:14rem;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: x-large;
+    font-weight: bolder;
+}

@@ -5626,7 +5626,7 @@ a.badge-dark:hover, a.badge-dark:focus {
     background-color: #919ca6;
 }
 
-.jumbotron {
+/* .jumbotron {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
     background-color: #303030;
@@ -5643,7 +5643,7 @@ a.badge-dark:hover, a.badge-dark:focus {
     padding-right: 0;
     padding-left: 0;
     border-radius: 0;
-}
+} */
 
 .alert {
     position: relative;
